@@ -57,7 +57,11 @@ const TabBarCustomButton = ({accessibilityState, children, onPress}) => {
 const Tab = createBottomTabNavigator();
 
 const CustomTabBar = props => {
-  return <BottomTabBar {...props.props} />;
+  return (
+    <View>
+      <BottomTabBar {...props.props} />
+    </View>
+  );
 };
 const Tabs = () => {
   return (
@@ -108,7 +112,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="like"
+        name="Favorite"
         component={Home}
         options={{
           tabBarIcon: ({focused}) => (
