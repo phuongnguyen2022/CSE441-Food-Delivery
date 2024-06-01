@@ -69,6 +69,7 @@ const Tabs = () => {
       tabBarOptions={{
         showLabel: false,
         style: {
+          position: 'absolute',
           borderTopWidth: 0,
           backgroundColor: 'transparent',
           elevation: 0,
@@ -150,4 +151,5 @@ const Tabs = () => {
     </Tab.Navigator>
   );
 };
+
 export default Tabs;

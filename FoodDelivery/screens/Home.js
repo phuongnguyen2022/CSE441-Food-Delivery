@@ -44,8 +44,7 @@ const Home = () => {
     let category = categories.filter(a => a.id == id);
 
     if (category.length > 0) return category[0].name;
-
-    return '';
+    else return '';
   }
 
   function renderHeader() {
@@ -99,7 +98,7 @@ const Home = () => {
         <TouchableOpacity
           style={{
             padding: SIZES.padding,
-            paddingBottom: SIZES.padding * 2,
+            paddingBottom: SIZES.padding,
             backgroundColor:
               selectedCategory?.id == item.id ? COLORS.primary : COLORS.white,
             borderRadius: SIZES.radius,
@@ -112,7 +111,7 @@ const Home = () => {
           <View
             style={{
               width: 50,
-              height: 55,
+              height: 50,
               borderRadius: 25,
               alignItems: 'center',
               justifyContent: 'center',
@@ -164,7 +163,7 @@ const Home = () => {
           style={{marginBottom: SIZES.padding * 2}}
           //onPress={}
         >
-          <View>
+          <View style={{marginBottom: SIZES.padding}}>
             <Image
               source={item.photo}
               resizeMode="cover"
@@ -174,6 +173,52 @@ const Home = () => {
                 borderRadius: SIZES.radius,
               }}
             />
+            <View
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                height: 50,
+                width: SIZES.width * 0.3,
+                backgroundColor: COLORS.white,
+                borderTopRightRadius: SIZES.radius,
+                borderBottomLeftRadius: SIZES.radius,
+                alignItems: 'center',
+                justifyContent: 'center',
+                ...styles.shadow,
+              }}>
+              <Text style={{...FONTS.h4}}>{item.duration}</Text>
+            </View>
+          </View>
+
+          <Text style={{...FONTS.body2, color: 'black'}}>{item.name}</Text>
+          <View
+            style={{
+              marginTop: SIZES.padding,
+              flexDirection: 'row',
+            }}>
+            <Image
+              source={icons.star}
+              style={{
+                height: 20,
+                width: 20,
+                tintColor: COLORS.primary,
+                marginRight: 10,
+              }}
+            />
+            <Text style={{...FONTS.body3, color: 'black'}}>{item.rating}</Text>
+            <View style={{flexDirection: 'row', marginLeft: 10}}>
+              {item.categories.map(categoryId => {
+                return (
+                  <View style={{flexDirection: 'row'}} key={categoryId}>
+                    <Text style={{...FONTS.body3}}>
+                      {getCategoryNameById(categoryId)}
+                    </Text>
+                  </View>
+                );
+              })}
+
+          
+            </View>
           </View>
         </TouchableOpacity>
       );
