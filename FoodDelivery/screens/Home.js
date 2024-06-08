@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {COLORS, icons, images, FONTS, SIZES} from '../constants';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const initialCurrentLocation = {
     streetName: 'EIU',
     gps: {
@@ -79,7 +79,7 @@ const Home = () => {
         <TouchableOpacity
           style={{
             width: 50,
-            paddingLeft: SIZES.padding * 2,
+            paddingRight: SIZES.padding * 2,
             justifyContent: 'center',
           }}>
           <Image
@@ -98,13 +98,13 @@ const Home = () => {
         <TouchableOpacity
           style={{
             padding: SIZES.padding,
-            paddingBottom: SIZES.padding,
             backgroundColor:
               selectedCategory?.id == item.id ? COLORS.primary : COLORS.white,
             borderRadius: SIZES.radius,
             alignItems: 'center',
             justifyContent: 'center',
-            marginRight: 22,
+            marginRight: 11,
+            marginLeft: 11,
             ...styles.shadow,
           }}
           onPress={() => onSelectCategory(item)}>
@@ -143,7 +143,7 @@ const Home = () => {
     };
 
     return (
-      <View style={{padding: SIZES.padding * 2}}>
+      <View style={{paddingLeft: SIZES.padding, justifyContent: 'center'}}>
         <FlatList
           data={categories}
           horizontal
@@ -159,9 +159,11 @@ const Home = () => {
   function renderRestaurantList() {
     const renderItem = ({item}) => {
       return (
-        <TouchableOpacity
-          style={{marginBottom: SIZES.padding * 2}}
-          //onPress={}
+        <TouchableOpacity style={{marginBottom: SIZES.padding * 2}}
+          onPress={()=> navigation.navigate("Restaurant",{
+            item,
+            currentLocation
+          })}
         >
           <View style={{marginBottom: SIZES.padding}}>
             <Image
@@ -190,35 +192,24 @@ const Home = () => {
             </View>
           </View>
 
-          <Text style={{...FONTS.body2, color: 'black'}}>{item.name}</Text>
           <View
             style={{
               marginTop: SIZES.padding,
               flexDirection: 'row',
             }}>
+            <Text style={{...FONTS.body3, color: 'black'}}>{item.name}</Text>
             <Image
               source={icons.star}
               style={{
                 height: 20,
                 width: 20,
                 tintColor: COLORS.primary,
-                marginRight: 10,
+                marginRight: 5,
+                marginLeft: 10,
               }}
             />
             <Text style={{...FONTS.body3, color: 'black'}}>{item.rating}</Text>
-            <View style={{flexDirection: 'row', marginLeft: 10}}>
-              {item.categories.map(categoryId => {
-                return (
-                  <View style={{flexDirection: 'row'}} key={categoryId}>
-                    <Text style={{...FONTS.body3}}>
-                      {getCategoryNameById(categoryId)}
-                    </Text>
-                  </View>
-                );
-              })}
-
-          
-            </View>
+            <View style={{flexDirection: 'row', marginLeft: 10}}></View>
           </View>
         </TouchableOpacity>
       );
