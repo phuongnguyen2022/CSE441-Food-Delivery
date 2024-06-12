@@ -227,7 +227,7 @@ const Home = ({navigation}) => {
     );
   }
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       {renderHeader()}
       {renderMainCategories()}
       {renderRestaurantList()}
