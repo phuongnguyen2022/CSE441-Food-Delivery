@@ -12,20 +12,6 @@ const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <MapView
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
-    </View>
-  );
-};
-{
-  /* return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
@@ -36,8 +22,8 @@ const App = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};*/
-}
+};
+
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
